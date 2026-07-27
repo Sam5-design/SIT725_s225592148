@@ -1,0 +1,24 @@
+{
+  "name": "sit725-3-2p-plants",
+  "version": "1.0.0",
+  "description": "sit 725 3.2P getting graphical - plants domain",
+  "keywords": [
+    "Nodejs",
+    "Express",
+    "Materialize",
+    "HTML",
+    "JS",
+    "CSS"
+  ],
+  "license": "MIT",
+  "author": "SS",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {}
+}
