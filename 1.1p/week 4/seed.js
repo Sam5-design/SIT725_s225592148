@@ -2,43 +2,51 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://127.0.0.1:27017/myprojectDB');
 
 const PlantSchema = new mongoose.Schema({
-  title: String,
-  image: String,
-  link: String,
-  description: String,
+  name: String,
+  photoUrl: String,
+  moreInfoLink: String,
+  careNotes: String,
+  difficulty: String
 });
 
 const Plant = mongoose.model('Plant', PlantSchema);
 
 const plants = [
   {
-    title: "Monstera Deliciosa",
-    image: "images/monstera.jpg",
-    link: "About Monstera",
-    description: "Famous for its large, glossy, split leaves. Loves bright, indirect light."
+    name: "Monstera Deliciosa",
+    photoUrl: "images/monstera.jpg",
+    moreInfoLink: "About Monstera",
+    careNotes: "Famous for its large, glossy, split leaves. Loves bright, indirect light.",
+    difficulty: "Easy"
   },
   {
-    title: "Snake Plant",
-    image: "images/snake-plant.jpg",
-    link: "About Snake Plant",
-    description: "Extremely hardy, tolerates low light and irregular watering."
+    name: "Snake Plant",
+    photoUrl: "images/snake-plant.jpg",
+    moreInfoLink: "About Snake Plant",
+    careNotes: "Extremely hardy, tolerates low light and irregular watering.",
+    difficulty: "Very Easy"
   },
   {
-    title: "Golden Pothos",
-    image: "images/pothos.jpg",
-    link: "About Pothos",
-    description: "Trailing vine that thrives almost anywhere, great for beginners."
+    name: "Golden Pothos",
+    photoUrl: "images/pothos.jpg",
+    moreInfoLink: "About Pothos",
+    careNotes: "Trailing vine that thrives almost anywhere, great for beginners.",
+    difficulty: "Easy"
   },
   {
-    title: "Fiddle Leaf Fig",
-    image: "images/fiddle-leaf-fig.jpg",
-    link: "About Fiddle Leaf Fig",
-    description: "Statement plant with large violin-shaped leaves. Fussy about light changes."
+    name: "Fiddle Leaf Fig",
+    photoUrl: "images/fiddle-leaf-fig.jpg",
+    moreInfoLink: "About Fiddle Leaf Fig",
+    careNotes: "Statement plant with large violin-shaped leaves. Fussy about light changes.",
+    difficulty: "Hard"
   }
 ];
 
-Plant.insertMany(plants)
-  .then(() => {
-    console.log("Sample plants saved!");
-    mongoose.connection.close();
-  });
+async function seedDatabase() {
+  await Plant.deleteMany({});
+  await Plant.insertMany(plants);
+  console.log("Old data cleared and sample plants saved!");
+  mongoose.connection.close();
+}
+
+seedDatabase();
