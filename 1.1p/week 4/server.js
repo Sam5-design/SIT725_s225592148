@@ -33,11 +33,11 @@ var plants = [
 ]
 
 app.get('/api/plants', (req, res) => {
-  res.json(plants);
+  res.json({ statusCode: 200, data: plants, message: "Success" })
 })
 
 var port = process.env.port || 3000;
 
 app.listen(port, () => {
   console.log("App listening to: " + port)
-})
+}) 

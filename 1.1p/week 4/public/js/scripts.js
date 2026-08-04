@@ -30,8 +30,10 @@ const addCards = (items) => {
 const loadPlants = () => {
   fetch('/api/plants')
     .then(res => res.json())
-    .then(plants => {
-      addCards(plants);
+    .then(response => {
+      if (response.statusCode === 200) {
+        addCards(response.data);
+      }
     })
     .catch(err => console.error('Error fetching plants:', err));
 }
